@@ -3,13 +3,6 @@ This code implements the room layout estimation network described in
 
 [**Physics Inspired Optimization on Semantic Transfer Features: An Alternative Method for Room Layout Estimation**](http://openaccess.thecvf.com/content_cvpr_2017/html/Zhao_Physics_Inspired_Optimization_CVPR_2017_paper.html)
 
-# Data
-Download pre-processed SUNRGBD dataset at [sunrgbd.zip](https://drive.google.com/open?id=1oP0-n0AHW5mlfNrORLmQAAXqv0ByjIRg)
-
-Download pre-processed LSUN dataset at [lsun.zip](https://drive.google.com/open?id=1e40AC_9CwgWPQL9eh18y2k9u4O0X3rl4)
-
-Execute `mkdir datasets` in the root folder and unzip the datasets therein.
-
 # Prerequisite
 
 The code is based upon [DRN](https://github.com/fyu/drn).
@@ -29,6 +22,30 @@ cv2 3.1.0
 torchvision 0.2.1
 
 64-bit ubuntu 16.04.5 (4.4.0-103-generic)
+
+anaconda (if you want to use provided anaconda environment)
+# Environment setup
+
+To setup the anaconda envrionment, run the follwoing commands in the base dir of the repo
+```bash
+conda env create -f env.yaml
+source activate pytorch.room.layout
+```
+
+# Data
+
+## Manual download
+Download pre-processed SUNRGBD dataset at [sunrgbd.zip](https://drive.google.com/open?id=1oP0-n0AHW5mlfNrORLmQAAXqv0ByjIRg)
+
+Download pre-processed LSUN dataset at [lsun.zip](https://drive.google.com/open?id=1e40AC_9CwgWPQL9eh18y2k9u4O0X3rl4)
+
+Execute `mkdir datasets` in the root folder and unzip the datasets therein.
+
+## Automatic download
+To download the above mentioned datasets automatically as well as the pre-trained models mentioned below, run 
+```bash
+python download_assets.py
+```
 
 # Commands - SUNRGBD
 `python segment_st.py train -d datasets/sunrgbd/ -c 37 -s 480 --arch drn_d_105 --batch-size 32 --random-scale 1.75 --random-rotate 15 --epochs 100 --lr 0.01 --momentum 0.9 --lr-mode poly`
@@ -67,7 +84,7 @@ The mIOU style performance should be reported as:
 
 # Visualization
 
-Use the matlab script visualize.m, sample results are like:
+Use the matlab script `visualize.m`, or python script `visualize.py` to visualize the results. sample results are like:
 
 ![1](/pics/1.png)
 ![2](/pics/2.png)
